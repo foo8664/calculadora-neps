@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 struct op {
-	long n1;
-	long n2;
+	double n1;
+	double n2;
 	char op;
 };
 
@@ -72,7 +72,7 @@ enum act getact(void)
 	fputs("4. Divisão\n", stdout);
 	fputs("5. Sair\n", stdout);
 	fputs("Opção: ", stdout);
-	if (scanf("%d", (int *)&act) != 1)
+	if (scanf("%d", (int *)&act) != 1 || act < 1 || act > 5)
 		return ACT_ERR;
 	return act;
 }
@@ -84,14 +84,14 @@ struct op *getop(enum act act)
 		return NULL;
 
 	fputs("Digite o primeiro número: ", stdout);
-	if (scanf("%ld", &op->n1) != 1) {
+	if (scanf("%lf", &op->n1) != 1) {
 		free(op);
 		return NULL;
 	}
 	getchar();
 
 	fputs("Digite o segundo número: ", stdout);
-	if (scanf("%ld", &op->n2) != 1) {
+	if (scanf("%lf", &op->n2) != 1) {
 		free(op);
 		return NULL;
 	}
@@ -117,7 +117,7 @@ struct op *getop(enum act act)
 
 void result(struct op *op)
 {
-	long ret;
+	double ret;
 
 	switch (op->op) {
 	case '+':
@@ -134,7 +134,7 @@ void result(struct op *op)
 		break;
 	}
 
-	printf("Resultado: %ld %c %ld = %ld\n", op->n1, op->op, op->n2, ret);
+	printf("Resultado: %.4lf %c %.4lf = %.4lf\n", op->n1, op->op, op->n2, ret);
 }
 
 int again(void)
@@ -143,11 +143,11 @@ int again(void)
 	while (1) {
 		fputs("Desjea realizar outra operação (s/n)?: ", stdout);
 		scanf("%c", &ret);
-		if (ret != 's' && ret != 'n')
+		if (ret != 's' && ret != 'S' && ret != 'n' && ret != 'N')
 			fputs(	"Resposta inválida. Por favor, digite 's' para"
 				" sim ou 'n' para não.\n", stdout);
 		else
-			return ret == 's';
+			return ret == 's' || ret == 'S';
 	}
 }
 
