@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS.common = -Wall -Werror -Wextra -Wconversion -std=c99 -pedantic\
-	-mtune=native -Og -gdwarf-5 -fsanitize=address,leak,undefined
+	-mtune=native -march=native -O2
 
 main : main.c
 .PHONY : clean
