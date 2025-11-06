@@ -16,6 +16,7 @@ void result(struct op *op) __attribute__((nothrow, nonnull));
 void zerodiv(struct op *op) __attribute__((nothrow, nonnull));
 int again(void) __attribute__((nothrow));
 void exit_program(void) __attribute__((nothrow, noreturn));
+void clearscr(void) __attribute__((nothrow));
 
 int main(void)
 {
@@ -143,11 +144,13 @@ int again(void)
 	while (1) {
 		fputs("Desjea realizar outra operação (s/n)?: ", stdout);
 		scanf("%c", &ret);
-		if (ret != 's' && ret != 'S' && ret != 'n' && ret != 'N')
+		if (ret != 's' && ret != 'S' && ret != 'n' && ret != 'N') {
 			fputs(	"Resposta inválida. Por favor, digite 's' para"
 				" sim ou 'n' para não.\n", stdout);
-		else
+		} else {
+			clearscr();
 			return ret == 's' || ret == 'S';
+		}
 	}
 }
 
@@ -155,4 +158,16 @@ void exit_program(void)
 {
 	fputs("Obrigado por usar a calculadora! Até a próxima.\n", stdout);
 	exit(EXIT_SUCCESS);
+}
+
+void clearscr(void)
+{
+#if defined(__WIN32__) || defined(__WIN64__)
+	int i;
+	for (i = 0; i < 100; ++i)
+		putchar('\n'); /* N tem suporte p nada, vai essa bomba msm */
+#else /* Assumindo que suporta ANSI pq só a microsoft tem preguiça de suportar */
+	fputs("\e[2J\e[H", stdout);
+	fflush(stdout);
+#endif
 }
