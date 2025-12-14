@@ -2,23 +2,11 @@
 Realiza operações aritimeticas simples entre dois operandos, projeto feito para
 curso da Neps Academy
 
+[Como usar](assets/use.jpg)
+
 # Como usar
-execute o programa no terminal `./main`, e siga as instruções providenciadas
+execute o programa no terminal: `./main`, e siga as instruções providenciadas
 pelo programa:
-```bash
-$ ./main
-===============================
-   Calculadora Simples
-===============================
-Selecione uma operação:
-1. Adição
-2. Subtração
-3. Multiplicação
-4. Divisão
-5. Sair
-Opção: Digite o primeiro número: Digite o segundo número: Resultado: 2.0000 + 2.0000 = 4.0000
-Desjea realizar outra operação (s/n)?: n
-```
 
 # Instalação e pré-requisitos
 No momento da instalação, é necessario ter instalado:
@@ -48,3 +36,6 @@ $ make
 ├── README.md   # Arquivo que você esta lendo
 └── main.c      # codigo do programa
 ```
+
+# Licensa
+[MIT](LICENSE.md)

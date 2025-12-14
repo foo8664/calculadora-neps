@@ -81,7 +81,7 @@ enum act getact(void)
 struct op *getop(enum act act)
 {
 	struct op *op;
-	if (!(op = malloc(sizeof(op))))
+	if (!(op = malloc(sizeof(*op))))
 		return NULL;
 
 	fputs("Digite o primeiro número: ", stdout);
@@ -110,6 +110,8 @@ struct op *getop(enum act act)
 		break;
 	case ACT_DIV:
 		op->op = '/';
+		break;
+	default:	
 		break;
 	}
 
@@ -167,7 +169,7 @@ void clearscr(void)
 	for (i = 0; i < 100; ++i)
 		putchar('\n'); /* N tem suporte p nada, vai essa bomba msm */
 #else /* Assumindo que suporta ANSI pq só a microsoft tem preguiça de suportar */
-	fputs("\e[2J\e[H", stdout);
+	fputs("\033[2J\033[H", stdout);
 	fflush(stdout);
 #endif
 }
