@@ -2,6 +2,7 @@
 Realiza operações aritimeticas simples entre dois operandos, projeto feito para
 curso da Neps Academy
 
+# Demonstração
 ![Como usar](./assets/use.jpg)
 
 # Instalação e pré-requisitos
@@ -26,7 +27,7 @@ $ make
 
 # Como usar
 execute o programa no terminal: `./main`, e siga as instruções providenciadas
-pelo programa:
+pelo programa, por exemplo:
 ```bash
 $ ./main
 ===============================
